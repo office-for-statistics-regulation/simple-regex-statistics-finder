@@ -1,4 +1,4 @@
-First off, thank you for considering contributing to `name`. It's people like you that make `name` such a great tool.
+First off, thank you for considering contributing to `simple_regex_statistics_finder`. It's people like you that make `simple_regex_statistics_finder` such a great tool.
 
 Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue, assessing changes, and helping you finalize your pull requests.
 
@@ -6,7 +6,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 ## What to Contribute
 
-`name` is an open source project and we love to receive contributions from our community — you! There are many ways to contribute, from writing tutorials or blog posts, improving the documentation, submitting bug reports and feature requests or writing code which can be incorporated into Elasticsearch itself.
+`simple_regex_statistics_finder` is an open source project and we love to receive contributions from our community — you! There are many ways to contribute, from writing tutorials or blog posts, improving the documentation, submitting bug reports and feature requests or writing code which can be incorporated into Elasticsearch itself.
 
 <a id="ground-rules"> </a>
 
@@ -35,7 +35,7 @@ Working on your first Pull Request? You can learn how from this *free* series, [
 
 ## How to report a bug
 
-If you find a security vulnerability, do NOT open an issue. Email datacampus@ons.gov.uk instead.
+If you find a security vulnerability, do NOT open an issue. Email regulation@statistics.gov.uk instead.
 
 When filing an issue, make sure to answer the questions in the Bug template.
 
