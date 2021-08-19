@@ -1,100 +1,54 @@
-## A Project Template for OSR Projects
+## simple regex statistics finder
 
-### 1. Guides for Private AND Public Repositories
+A super simple regex (regular expressions) function called `statistics_finder.py` that looks for statistics in text. It also removes numbers which aren't statistics (dates for example). This was designed for parsing parliment speech text.
 
-#### 1.1 Introduction
+### What it looks for
+- Absolute values comprising one moe more digits (e.g. 1, 100, 10000000)
+- Uses of £, $ and % symbols
+- Uses of words such as hundred(s), thousand(s), million(s), billion(s), percent, half and quarter
 
-This repository is intended to provide you with the documents you need to
-include to get a repository started and give guidance as to what the contents
-should be. The minimum content contained in the README.md for your project
-should be (in the most suitable order for the content):
+### What it ignores
+- Dates in 01 January 2021 or 01 January format
+- The years between 2019 and 2021
+- covid19, covid 19 or covid-19
+- values followed by months or years
+- time values in am and pm format
+- values that are preceeded by the words stage, category, No. Vol., c. Ayes or Noes
+- certain words like halfterm
 
-- description of what the project is
-- instruction on how to install the tool (if applicable)
-- detailed instructions on basic use
-- a demo of the code
+### Examples
 
-With the inclusion of all documents included here, your repository should meet
-all of the recommended [community standards on github.com](https://help.github.com/en/categories/building-a-strong-community).
+Actual statistics highlighted in bold we would want to look for. Text comprises many other values that we want to ignore.
 
-Once you have copied this directory you should replace the content of this file
-with the description of your work.
 
-Whilst no mandatory recommendation is made as to how to
-structure the directories or manage the project itself - as this will vary based
-on the needs and the abilities of those doing the development work - guidelines
-are provided below on how to conduct your project in an Agile manner.
+#### Absolute values
 
-If your project is complex enough to warrant a documentation website please add
-a branch called `gh_pages` and place your documentation (in html format) there.
-Once you do this your html files will be rendered at
-https://office-for-statistics-regulation.github.io/projectName
+text = 'On 4 June during the covid19 pandemic OSR released stage 3 of their findings from the last 12 months. The team met for 92nd on the 1st of this month (01 July 2021); **675000 bananas** were eaten after reading category 2 No. 8 Vol. 686 c.23 of the report. Many were absent due to halfterm but at 6.44pm the vote was in, it was Ayes 524 to Noes 64. The report will now be published on 12 December 2021 following completion of stage 16. Thank you.'
 
-#### 1.2. Cloning this Repo
+find_statistics(text)
 
-There are two ways to use this template:
+`Out: TRUE`
 
-##### 1.2.1. Using GitHub (simple method)
+#### Uses of numerical words
 
-At the top of the main page of this repo is a green [Use this template](https://github.com/office-for-statistics-regulation/osr-private-template/generate) button, which
-will clone this repository into a new repository of your choice. The Issue Templates are 
-also cloned. Unfortunately, Issue Labels, and Project Boards are not cloned automatically,
-and you will have to manually add these (guidelines below).
+text = 'On 4 June during the covid19 pandemic OSR released stage 3 of their findings from the last 12 months. The team met for 92nd on the 1st of this month (01 July 2021); **thousands of bananas** were eaten after reading category 2 No. 8 Vol. 686 c.23 of the report. Many were absent due to halfterm but at 6.44pm the vote was in, it was Ayes 524 to Noes 64. The report will now be published on 12 December 2021 following completion of stage 16. Thank you.'
 
-##### 1.2.2. Using Git
+find_statistics(text)
 
-Create your new repository with a suitable projectName.
+`Out: TRUE`
 
-Clone this template to the new repository using
+#### Uses of symbols
 
-``` sh
-git clone git@github.com:office-for-statistics-regulation/osr-private-template projectName
-```
+text = 'On 4 June during the covid19 pandemic OSR released stage 3 of their findings from the last 12 months. The team met for 92nd on the 1st of this month (01 July 2021); **54% of bananas** were eaten after reading category 2 No. 8 Vol. 686 c.23 of the report. Many were absent due to halfterm but at 6.44pm the vote was in, it was Ayes 524 to Noes 64. The report will now be published on 12 December 2021 following completion of stage 16. Thank you.'
 
-which will then create a new directory with your project's name and place all of
-the files into it. However, the remote address will remain as the skeletor repo
-until you do
+find_statistics(text)
 
-``` sh
-git remote set-url origin git@github.com:office-for-statistics-regulation/projectName
-```
+`Out: TRUE`
 
-### 2. Guides for Private Repositories ONLY
+#### No relevant statistics
 
-#### 2.1. Using GitHub for Project Management (Agile)
+text = 'On 4 June during the covid19 pandemic OSR released stage 3 of their findings from the last 12 months. The team met for 92nd on the 1st of this month (01 July 2021);  everyone ate after reading category 2 No. 8 Vol. 686 c.23 of the report. Many were absent due to halfterm but at 6.44pm the vote was in, it was Ayes 524 to Noes 64. The report will now be published on 12 December 2021 following completion of stage 16. Thank you.'
 
-Note: All updates for a project must be included on the relevant
-[project on the portfolio board](https://github.com/orgs/office-for-statistics-regulation/projects/1).
-These guidelines relate to the `project repository` that you created using the above guidelines.
+find_statistics(text)
 
-### 3. Guides for Public Repositories ONLY
-
-Make a clean, fresh repository! This will make sure no git history is opened to the public. Copy your code into this repository and update the **CONTRIBUTING.md** file. Your **README.md** might also need more information too. And check you are using the relevant **LICENSE.md** file too.
-
-### 4. Contents
-
-* **CODE_OF_CONDUCT.md**: a statement from the [Contributor
-  Covenant](https://contributor-covenant.org) regarding what is and isn't
-  acceptable behaviour for contributors
-* **CONTRIBUTING.md**: guidelines for how contributions should be made to the work,
-  this should be updated when the work is made public
-* **README.md**: this document, every repository should have one and it acts as
-  the main landing page for your repository
-* **LICENSE**: the UK public sector usually operate under two different
-  licensing schemes. The most common for code is the MIT license which is
-  included in this repo. Alternatively there is an Open Government license and
-  a description of what OpenGov enforces can be found
-  [here](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
-* **.github**: this directory allows the user to specify templates for
-  contribution types, included in this repository are a bug fix submission
-  template, a feature request template and a pull request template. Each of them
-  includes a series of tickboxes which you can use to help you decide whether or
-  not the submission is suitable.
-* **.gitignore**: this file allows you to specify which directories, files and
-  globbed file types are to be ignored as part of the diffs being managed by
-  git. This allows you to have your data in the same directory structure as your
-  code without it needing to be pushed and pulled along with it. If you have
-  data which you do need to manage I would highly advise the use of `git-annex`
-  ahead of including data files in your repository (unless they are small).
-
-Taken from Michael Hodge's work on Data Science Campus GitHub.
+`Out: FALSE`
